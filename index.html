@@ -3,8 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Phaser Game</title>
+    <title>Balloon Dodge!</title>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.60.0/phaser.min.js"></script>
+
     <style>
         body {
             margin: 0;
@@ -45,11 +46,13 @@
     </div>
 <script>
 
+    var gamePlay = window.innerWidth
+
         // Define the scene
         const config = {
         type: Phaser.AUTO,
-        height: window.innerWidth,
-        width: window.innerWidth,
+        height: gamePlay,
+        width: gamePlay,
         parent: 'game-container',
 
         physics: {
@@ -87,16 +90,12 @@
 
 
         // Create the circle sprite
-        circle = this.add.circle(this.cameras.main.centerX, this.cameras.main.centerY, 50, 0xffffff);
-  
-
+        circle = this.add.circle(this.cameras.main.centerX, this.cameras.main.centerY, gamePlay*.05, 0xffffff);
         // Set the circle's properties
         circle.setOrigin(0.5);
-        circle.setInteractive();       
-
+        circle.setInteractive(); 
         this.physics.add.existing(circle)
-        circle.body.setCircle(50);
-
+        circle.body.setCircle(gamePlay*.05);
 
         // Add the button controls
         function drawButton(scene, x, y, width, height, color, onClick) {
@@ -146,28 +145,28 @@
             }
 
         // Create the buttons
-        var buttonTopLeft = drawButton(this, 0, 0, 50, 50, 0xff0000, function() {
+        var buttonTopLeft = drawButton(this, 0, 0, gamePlay*.08, gamePlay*.08, 0xff0000, function() {
             console.log('Button Top Left clicked!');
             velx += setVel
             vely += setVel
             moveDirection = 'downRight';
         });
 
-        var buttonTopRight = drawButton(this, config.width - 50, 0, 50, 50, 0x00ff00, function() {
+        var buttonTopRight = drawButton(this, config.width - gamePlay*.08, 0, gamePlay*.08, gamePlay*.08, 0x00ff00, function() {
             console.log('Button Top Right clicked!');
             velx -= setVel
             vely += setVel
             moveDirection = 'downLeft';
         });
 
-        var buttonBottomLeft = drawButton(this, 0, config.height - 50, 50, 50, 0x0000ff, function() {
+        var buttonBottomLeft = drawButton(this, 0, config.height - gamePlay*.08, gamePlay*.08, gamePlay*.08, 0x0000ff, function() {
             console.log('Button Bottom Left clicked!');
             velx += setVel
             vely -= setVel
             moveDirection = 'upRight';
         });
 
-        var buttonBottomRight = drawButton(this, config.width - 50, config.height - 50, 50, 50, 0xffff00, function() {
+        var buttonBottomRight = drawButton(this, config.width - gamePlay*.08, config.height - gamePlay*.08, gamePlay*.08, gamePlay*.08, 0xffff00, function() {
             console.log('Button Bottom Right clicked!');
             velx -= setVel
             vely -= setVel
