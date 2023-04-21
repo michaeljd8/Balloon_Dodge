@@ -1,0 +1,93 @@
+body {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    position: relative; /* add relative positioning to body */
+  }
+  
+  body .header {
+    position: absolute;
+    top: 0;
+    height: 10%;
+    width: 100vw;
+    font-size: 95%;
+    border-radius: 4px;
+    background-color: #000;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    text-shadow: 2px 2px 0 #000;
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+  }
+  
+  #game-container {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #2d2d2d;
+    box-sizing: border-box;
+    transition: opacity 0s ease 0.1s;
+  }
+  
+  #score-container {
+    position: absolute;
+    width: 50%;
+    top: 10%;
+    height: calc(100vh - 100vw - 10%);
+    background-color: #333;
+    font-size: 95%;
+    /*border-radius: 4px;*/
+    background-color: #000;
+    color: #ffffff;
+    /*border: 2px solid #ffffff;*/
+    text-shadow: 2px 2px 0 #000;
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+
+}
+  
+  #high-score {
+    position: absolute;
+    left: 50%;
+    right: 0;
+    top: 10%;
+    height: calc(100vh - 100vw - 10%);
+    background-color: #333;
+    background-color: #000;
+    color: #ffffff;
+    text-shadow: 2px 2px 0 #000;
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+  }
+  
+  #start-button,
+  #restart-button {
+    font-size: 24px;
+    padding: 10px 20px;
+    border-radius: 4px;
+    background-color: #000; /* White background */
+    color: #ffffff; /* black text */
+    border: 2px solid #ffffff;
+    text-shadow: 2px 2px 0 #000; /* black text shadow */
+    font-family: 'Press Start 2P', cursive; /* retro arcade font */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+  }
+  
