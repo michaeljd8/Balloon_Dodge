@@ -16,8 +16,8 @@ var game = new Phaser.Game(config);
 // Create your game objects
 var circle;
 var lines;
-var velx = 75;
-var vely = 75;
+var velx = Phaser.Math.RND.integerInRange(-75,75);
+var vely = Phaser.Math.RND.integerInRange(-75,75);
 var setVel = 75;
 var drag = .99;
 var moveDirection = null;
@@ -30,6 +30,9 @@ var elaspedTime = 0;
 var score;
 var scoreText;
 var scoreDiv;
+var hsDivText;
+var hsDiv;
+var high_score = 0;
 
 var mainScene = new Phaser.Scene('main');
 
@@ -59,9 +62,13 @@ mainScene.preload = function() {
 
 mainScene.create = function() {
     // game objects creation
-    scoreDiv = document.getElementById('score-container')
-    scoreText = this.add.text('Score: 0', { font: '24px Arial', fill: '#ff0000' });
+    scoreDiv = document.getElementById('score-box')
+    scoreText = this.add.text('Score: 0');
     scoreText.setOrigin(0);
+
+    hsDiv = document.getElementById('high-score-box')
+    hsDivText = this.add.text('High Score: 0')
+    hsDivText.setOrigin(0);
 
     // Create array for line sprites
     lines = this.physics.add.group();
@@ -73,8 +80,8 @@ mainScene.create = function() {
     this.physics.add.existing(circle)
     circle.body.setCircle(gamePlay*.05);
 
-    circle.body.setVelocity(Phaser.Math.RND.integerInRange(-75,75),
-    Phaser.Math.RND.integerInRange(-75,75))
+    circle.body.setVelocity(velx,
+        vely)
 
             // Add the button controls
     function drawButton(scene, x, y, width, height, color, onClick) {
@@ -131,22 +138,23 @@ mainScene.create = function() {
         moveDirection = 'downRight';
     });
 
-    var buttonTopRight = drawButton(this, config.width - gamePlay*.08, 0, gamePlay*.08, gamePlay*.08, 0x00ff00, function() {
+    var buttonTopRight = drawButton(this, config.width - gamePlay*.08, 0, gamePlay*.08, gamePlay*.08, 0xff0000, function() {
         console.log('Button Top Right clicked!');
         velx -= setVel
         vely += setVel
         moveDirection = 'downLeft';
     });
 
-    var buttonBottomLeft = drawButton(this, 0, config.height - gamePlay*.08, gamePlay*.08, gamePlay*.08, 0x0000ff, function() {
+    var buttonBottomLeft = drawButton(this, 0, config.height - gamePlay*.08, gamePlay*.08, gamePlay*.08, 0xff0000, function() {
         console.log('Button Bottom Left clicked!');
         velx += setVel
         vely -= setVel
         moveDirection = 'upRight';
     });
 
-    var buttonBottomRight = drawButton(this, config.width - gamePlay*.08, config.height - gamePlay*.08, gamePlay*.08, gamePlay*.08, 0xffff00, function() {
+    var buttonBottomRight = drawButton(this, config.width - gamePlay*.08, config.height - gamePlay*.08, gamePlay*.08, gamePlay*.08, 0xff0000, function() {
         console.log('Button Bottom Right clicked!');
+        console.log(velx, " ", vely)
         velx -= setVel
         vely -= setVel
         console.log(velx,vely)
@@ -177,8 +185,14 @@ mainScene.update = function() {
         // Create a collider between the circle and lines
         this.physics.add.collider(circle, lines, function() {
             console.log('Circle collided with a line!');
-            this.scene.stop('main')
+            this.scene.pause('main')
             restartButton.style.display = 'block';
+            if (elaspedTime > high_score) {
+                high_score = elaspedTime
+            }
+            console.log(high_score)
+            hsDivText.setText('High Score: ' + high_score)
+            hsDiv.innerHTML = hsDivText.text;
 
         }, null, this);
 
