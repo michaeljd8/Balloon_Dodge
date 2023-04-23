@@ -171,7 +171,7 @@ mainScene.update = function() {
 
 
         elaspedTime = Math.floor((game.getTime() - start_clock)/1000)
-        scoreText.setText('Score : ' + elaspedTime)
+        scoreText.setText('Score: ' + elaspedTime)
         scoreDiv.innerHTML = scoreText.text;
 
         lineCounter++;
