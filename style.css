@@ -13,12 +13,12 @@ body {
     top: 0;
     height: 10vh;
     width: 100vw;
-    font-size: 4vh;
+    font-size: 3.5vh;
     border-radius: 5px;
     background-color: #000;
     color: #ffffff;
     border: 4px solid #ff0000;
-    text-shadow: 2px 2px 0 #ff0000;
+    text-shadow: 4px 4px 0 #ff0000;
     font-family: 'Press Start 2P', cursive;
     text-align: center;
     display: flex;
@@ -54,7 +54,7 @@ body {
 
   #score-box,
   #high-score-box {
-    font-size: 6vh;
+    font-size: 2vh;
     padding: 10px 20px;
     height: 10;
     width: 25vw;
@@ -89,13 +89,13 @@ body {
   
   #start-button,
   #restart-button {
-    font-size: 4vh;
+    font-size: 3vh;
     padding: 10px 20px;
     border-radius: 4px;
     background-color: #000; 
     color: #ffffff; 
     border: 2px solid #ff0000;
-    text-shadow: 2px 2px 0 #ff0000; 
+    text-shadow: 4px 4px 0 #ff0000; 
     font-family: 'Press Start 2P', cursive; /* retro arcade font */
     position: absolute;
     top: 50%;
