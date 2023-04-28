@@ -13,7 +13,7 @@ body {
     top: 0;
     height: 10vh;
     width: 100vw;
-    font-size: 3vh;
+    font-size: 4vh;
     border-radius: 5px;
     background-color: #000;
     color: #ffffff;
@@ -54,7 +54,7 @@ body {
 
   #score-box,
   #high-score-box {
-    font-size: larger;
+    font-size: 3vh;
     padding: 10px 20px;
     height: 10;
     width: 25vw;
@@ -89,7 +89,7 @@ body {
   
   #start-button,
   #restart-button {
-    font-size: xx-large;
+    font-size: 4vh;
     padding: 10px 20px;
     border-radius: 4px;
     background-color: #000; 
