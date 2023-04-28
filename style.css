@@ -13,7 +13,7 @@ body {
     top: 0;
     height: 10vh;
     width: 100vw;
-    font-size: x-large;
+    font-size: 3vh;
     border-radius: 5px;
     background-color: #000;
     color: #ffffff;
@@ -41,7 +41,6 @@ body {
     width: 50%;
     top: 10vh;
     height: 15vh;
-    font-size: xx-large;
     background-color: #000;
     color: #000;
     text-shadow: 2px 2px 0 #ff0000;
@@ -51,12 +50,11 @@ body {
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
-
 }
 
   #score-box,
   #high-score-box {
-    font-size: large;
+    font-size: larger;
     padding: 10px 20px;
     height: 10;
     width: 25vw;
@@ -64,7 +62,7 @@ body {
     background-color: #000; 
     color: #ffffff;
     border: 2px solid #ff0000;
-    text-shadow: 2px 2px 0 #ff0000; /* black text shadow */
+    text-shadow: 2px 2px 0 #ff0000; 
     font-family: 'Press Start 2P', cursive; /* retro arcade font */
     position: absolute;
     top: 50%;
@@ -91,7 +89,7 @@ body {
   
   #start-button,
   #restart-button {
-    font-size: x-large;
+    font-size: xx-large;
     padding: 10px 20px;
     border-radius: 4px;
     background-color: #000; 

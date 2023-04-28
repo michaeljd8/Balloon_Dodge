@@ -89,11 +89,11 @@ mainScene.create = function() {
         var button = scene.add.graphics();
 
         // Draw the button background
-        button.fillStyle(color, 1);
+        button.fillStyle(0xff0000, 1);
         button.fillRect(x, y, width, height);
 
         // Draw the arrow
-        var arrowLength = 50;
+        var arrowLength = gamePlay*.08;
         var arrowWidth = 20;
         var centerX = x + width / 2;
         var centerY = y + height / 2;
@@ -105,6 +105,7 @@ mainScene.create = function() {
         var arrowEndX = centerX + arrowLength * Math.cos(angle);
         var arrowEndY = centerY + arrowLength * Math.sin(angle);
         button.lineStyle(2, 0xffffff);
+        button.fillStyle(0xffffff, 1);
         button.beginPath();
         button.moveTo(centerX, centerY);
         button.lineTo(arrowEndX, arrowEndY);
