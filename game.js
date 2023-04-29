@@ -191,8 +191,8 @@ mainScene.update = function() {
     
         if (elaspedTime>125) {
                lineDelay = 250;
-               lineVelMin = 1200;
-               lineVelMax = 1600;
+               lineVelMin = 400;
+               lineVelMax = 800;
         }
         
 
