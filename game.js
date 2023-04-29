@@ -132,28 +132,28 @@ mainScene.create = function() {
         }
 
     // Create the buttons
-    var buttonTopLeft = drawButton(this, 0, 0, gamePlay*.16, gamePlay*.16, 0xff0000, function() {
+    var buttonTopLeft = drawButton(this, 0, 0, gamePlay*.1, gamePlay*.1, 0xff0000, function() {
         console.log('Button Top Left clicked!');
         velx += setVel
         vely += setVel
         moveDirection = 'downRight';
     });
 
-    var buttonTopRight = drawButton(this, config.width - gamePlay*.16, 0, gamePlay*.16, gamePlay*.16, 0xff0000, function() {
+    var buttonTopRight = drawButton(this, config.width - gamePlay*.1, 0, gamePlay*.1, gamePlay*.1, 0xff0000, function() {
         console.log('Button Top Right clicked!');
         velx -= setVel
         vely += setVel
         moveDirection = 'downLeft';
     });
 
-    var buttonBottomLeft = drawButton(this, 0, config.height - gamePlay*.16, gamePlay*.16, gamePlay*.16, 0xff0000, function() {
+    var buttonBottomLeft = drawButton(this, 0, config.height - gamePlay*.1, gamePlay*.1, gamePlay*.1, 0xff0000, function() {
         console.log('Button Bottom Left clicked!');
         velx += setVel
         vely -= setVel
         moveDirection = 'upRight';
     });
 
-    var buttonBottomRight = drawButton(this, config.width - gamePlay*.16, config.height - gamePlay*.16, gamePlay*.16, gamePlay*.16, 0xff0000, function() {
+    var buttonBottomRight = drawButton(this, config.width - gamePlay*.1, config.height - gamePlay*.1, gamePlay*.1, gamePlay*.1, 0xff0000, function() {
         console.log('Button Bottom Right clicked!');
         console.log(velx, " ", vely)
         velx -= setVel
@@ -176,6 +176,7 @@ mainScene.update = function() {
         scoreDiv.innerHTML = scoreText.text;
 
         lineCounter++;
+        lineDelay++;
 
         // Generate a new line if the lineCounter has reached the lineDelay value
         if (lineCounter >= lineDelay) {
