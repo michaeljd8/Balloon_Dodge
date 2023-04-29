@@ -23,6 +23,8 @@ var drag = .99;
 var moveDirection = null;
 var lineCounter = 400;
 var lineDelay = 500; // Number of loops to skip before generating a new line
+var lineVelMin = 2;
+var lineVelMax = 200;
 var startButton = document.getElementById('start-button');
 var restartButton = document.getElementById('restart-button');
 var start_clock = false;
@@ -173,10 +175,13 @@ mainScene.update = function() {
 
         if (elaspedTime > 30) {
             lineDelay = 450;
+            lineVelMin = 20;
             if (elaspedTime> 60) {
                 lineDelay = 400;
+                lineVelMin = 40;
                 if(elaspedTime> 90){
                     lineDelay = 300;
+                    lineVelMin = 80;
                 }
             }
         }
