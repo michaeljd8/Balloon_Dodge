@@ -40,8 +40,7 @@ startButton.addEventListener('click', function() {
     startButton.style.display = 'none';
     game.scene.start('main');
     start_clock = game.getTime();
-    //restartButton.style.display = 'block';
-});
+    });
 
 restartButton.addEventListener('click', function() {
     game.scene.start('main');
@@ -50,6 +49,7 @@ restartButton.addEventListener('click', function() {
     Phaser.Math.RND.integerInRange(-75,75))
     moveDirection = null;
     start_clock = game.getTime();
+    lineDelay = 500;
 });
 
 
@@ -133,32 +133,26 @@ mainScene.create = function() {
 
     // Create the buttons
     var buttonTopLeft = drawButton(this, 0, 0, gamePlay*.1, gamePlay*.1, 0xff0000, function() {
-        console.log('Button Top Left clicked!');
         velx += setVel
         vely += setVel
         moveDirection = 'downRight';
     });
 
     var buttonTopRight = drawButton(this, config.width - gamePlay*.1, 0, gamePlay*.1, gamePlay*.1, 0xff0000, function() {
-        console.log('Button Top Right clicked!');
         velx -= setVel
         vely += setVel
         moveDirection = 'downLeft';
     });
 
     var buttonBottomLeft = drawButton(this, 0, config.height - gamePlay*.1, gamePlay*.1, gamePlay*.1, 0xff0000, function() {
-        console.log('Button Bottom Left clicked!');
         velx += setVel
         vely -= setVel
         moveDirection = 'upRight';
     });
 
     var buttonBottomRight = drawButton(this, config.width - gamePlay*.1, config.height - gamePlay*.1, gamePlay*.1, gamePlay*.1, 0xff0000, function() {
-        console.log('Button Bottom Right clicked!');
-        console.log(velx, " ", vely)
         velx -= setVel
         vely -= setVel
-        console.log(velx,vely)
         moveDirection = 'upLeft';
     });
     
@@ -176,7 +170,17 @@ mainScene.update = function() {
         scoreDiv.innerHTML = scoreText.text;
 
         lineCounter++;
-        lineDelay++;
+
+        if (elaspedTime > 30) {
+            lineDelay = 450;
+            if (elaspedTime> 60) {
+                lineDelay = 400;
+                if(elaspedTime> 90){
+                    lineDelay = 300;
+                }
+            }
+        }
+        
 
         // Generate a new line if the lineCounter has reached the lineDelay value
         if (lineCounter >= lineDelay) {
@@ -187,12 +191,12 @@ mainScene.update = function() {
         // Create a collider between the circle and lines
         this.physics.add.collider(circle, lines, function() {
             console.log('Circle collided with a line!');
+            console.log(lineDelay)
             this.scene.pause('main')
             restartButton.style.display = 'block';
             if (elaspedTime > high_score) {
                 high_score = elaspedTime
             }
-            console.log(high_score)
             hsDivText.setText('High Score: ' + high_score)
             hsDiv.innerHTML = hsDivText.text;
 
@@ -256,25 +260,25 @@ mainScene.update = function() {
 
 function createLine() {
 
-    h_l_line = this.add.rectangle(-10, Phaser.Math.RND.integerInRange(gamePlay*.1, gamePlay*.9), Phaser.Math.RND.integerInRange(gamePlay*.1, gamePlay*.3), gamePlay*.01, 0xffffff);
+    h_l_line = this.add.rectangle(-10, Phaser.Math.RND.integerInRange(gamePlay*.1, gamePlay*.9), Phaser.Math.RND.integerInRange(gamePlay*.1, gamePlay*.25), gamePlay*.01, 0xffffff);
         this.physics.add.existing(h_l_line);
         lines.add(h_l_line);
-        h_l_line.body.velocity.x = Phaser.Math.RND.integerInRange(20, 200);
+        h_l_line.body.velocity.x = Phaser.Math.RND.integerInRange(2, 200);
 
-    h_r_line = this.add.rectangle(window.innerHeight+10, Phaser.Math.RND.integerInRange(gamePlay*.1, gamePlay*.9), Phaser.Math.RND.integerInRange(gamePlay*.1, gamePlay*.3), gamePlay*.01, 0xffffff);
+    h_r_line = this.add.rectangle(window.innerHeight+10, Phaser.Math.RND.integerInRange(gamePlay*.1, gamePlay*.9), Phaser.Math.RND.integerInRange(gamePlay*.1, gamePlay*.25), gamePlay*.01, 0xffffff);
         this.physics.add.existing(h_r_line);
         lines.add(h_r_line);
-        h_r_line.body.velocity.x = Phaser.Math.RND.integerInRange(-200,0);
+        h_r_line.body.velocity.x = Phaser.Math.RND.integerInRange(-200,2);
     
-    v_t_line = this.add.rectangle(Phaser.Math.RND.integerInRange(gamePlay*.1, gamePlay*.9), -10, gamePlay*.01, Phaser.Math.RND.integerInRange(gamePlay*.1, gamePlay*.3), 0xffffff);
+    v_t_line = this.add.rectangle(Phaser.Math.RND.integerInRange(gamePlay*.1, gamePlay*.9), -10, gamePlay*.01, Phaser.Math.RND.integerInRange(gamePlay*.1, gamePlay*.25), 0xffffff);
         this.physics.add.existing(v_t_line);
         lines.add(v_t_line);
-        v_t_line.body.velocity.y = Phaser.Math.RND.integerInRange(0, 200);
+        v_t_line.body.velocity.y = Phaser.Math.RND.integerInRange(2, 200);
 
-    v_b_line = this.add.rectangle(Phaser.Math.RND.integerInRange(gamePlay*.1, gamePlay*.9), window.innerHeight+10, gamePlay*.01, Phaser.Math.RND.integerInRange(gamePlay*.1, gamePlay*.3), 0xffffff);
+    v_b_line = this.add.rectangle(Phaser.Math.RND.integerInRange(gamePlay*.1, gamePlay*.9), window.innerHeight+10, gamePlay*.01, Phaser.Math.RND.integerInRange(gamePlay*.1, gamePlay*.25), 0xffffff);
         this.physics.add.existing(v_b_line);
         lines.add(v_b_line);
-        v_b_line.body.velocity.y = Phaser.Math.RND.integerInRange(0, -200);
+        v_b_line.body.velocity.y = Phaser.Math.RND.integerInRange(2, -200);
 
 
 
