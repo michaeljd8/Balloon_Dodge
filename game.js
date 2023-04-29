@@ -277,22 +277,22 @@ function createLine() {
     h_l_line = this.add.rectangle(-10, Phaser.Math.RND.integerInRange(gamePlay*.1, gamePlay*.9), Phaser.Math.RND.integerInRange(gamePlay*.1, gamePlay*.25), gamePlay*.01, 0xffffff);
         this.physics.add.existing(h_l_line);
         lines.add(h_l_line);
-        h_l_line.body.velocity.x = Phaser.Math.RND.integerInRange(2, 200);
+        h_l_line.body.velocity.x = Phaser.Math.RND.integerInRange(lineVelMin, lineVelMax);
 
     h_r_line = this.add.rectangle(window.innerHeight+10, Phaser.Math.RND.integerInRange(gamePlay*.1, gamePlay*.9), Phaser.Math.RND.integerInRange(gamePlay*.1, gamePlay*.25), gamePlay*.01, 0xffffff);
         this.physics.add.existing(h_r_line);
         lines.add(h_r_line);
-        h_r_line.body.velocity.x = Phaser.Math.RND.integerInRange(-200,2);
+        h_r_line.body.velocity.x = Phaser.Math.RND.integerInRange(-lineVelMax,lineVelMin);
     
     v_t_line = this.add.rectangle(Phaser.Math.RND.integerInRange(gamePlay*.1, gamePlay*.9), -10, gamePlay*.01, Phaser.Math.RND.integerInRange(gamePlay*.1, gamePlay*.25), 0xffffff);
         this.physics.add.existing(v_t_line);
         lines.add(v_t_line);
-        v_t_line.body.velocity.y = Phaser.Math.RND.integerInRange(2, 200);
+        v_t_line.body.velocity.y = Phaser.Math.RND.integerInRange(lineVelMin, lineVelMax);
 
     v_b_line = this.add.rectangle(Phaser.Math.RND.integerInRange(gamePlay*.1, gamePlay*.9), window.innerHeight+10, gamePlay*.01, Phaser.Math.RND.integerInRange(gamePlay*.1, gamePlay*.25), 0xffffff);
         this.physics.add.existing(v_b_line);
         lines.add(v_b_line);
-        v_b_line.body.velocity.y = Phaser.Math.RND.integerInRange(2, -200);
+        v_b_line.body.velocity.y = Phaser.Math.RND.integerInRange(lineVelMin, -lineVelMax);
 
 
 
