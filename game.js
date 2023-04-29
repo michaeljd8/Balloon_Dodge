@@ -182,7 +182,7 @@ mainScene.update = function() {
                 if(elaspedTime> 90){
                     lineDelay = 300;
                     lineVelMin = 160;
-                    if(elaspedTime>180 && elaspedTime<185) {
+                    if(elaspedTime>120 && elaspedTime<125) {
                         lines.clear(true,true)                    
                         lineDelay = 250;
                         lineVelMin = 600;
