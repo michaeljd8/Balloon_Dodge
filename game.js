@@ -178,10 +178,15 @@ mainScene.update = function() {
             lineVelMin = 20;
             if (elaspedTime> 60) {
                 lineDelay = 400;
-                lineVelMin = 40;
+                lineVelMin = 80;
                 if(elaspedTime> 90){
                     lineDelay = 300;
-                    lineVelMin = 80;
+                    lineVelMin = 160;
+                    if(elaspedTime>180) {
+                        lineDelay = 250;
+                        lineVelMin = 300;
+                        lineVelMax = 400;
+                    }
                 }
             }
         }
