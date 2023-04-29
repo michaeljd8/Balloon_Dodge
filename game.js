@@ -94,7 +94,7 @@ mainScene.create = function() {
 
         // Draw the arrow
         var arrowLength = gamePlay*.08;
-        var arrowWidth = 20;
+        var arrowWidth = 40;
         var centerX = x + width / 2;
         var centerY = y + height / 2;
         var screenCenterX = scene.cameras.main.centerX;
@@ -132,28 +132,28 @@ mainScene.create = function() {
         }
 
     // Create the buttons
-    var buttonTopLeft = drawButton(this, 0, 0, gamePlay*.08, gamePlay*.08, 0xff0000, function() {
+    var buttonTopLeft = drawButton(this, 0, 0, gamePlay*.16, gamePlay*.16, 0xff0000, function() {
         console.log('Button Top Left clicked!');
         velx += setVel
         vely += setVel
         moveDirection = 'downRight';
     });
 
-    var buttonTopRight = drawButton(this, config.width - gamePlay*.08, 0, gamePlay*.08, gamePlay*.08, 0xff0000, function() {
+    var buttonTopRight = drawButton(this, config.width - gamePlay*.16, 0, gamePlay*.16, gamePlay*.16, 0xff0000, function() {
         console.log('Button Top Right clicked!');
         velx -= setVel
         vely += setVel
         moveDirection = 'downLeft';
     });
 
-    var buttonBottomLeft = drawButton(this, 0, config.height - gamePlay*.08, gamePlay*.08, gamePlay*.08, 0xff0000, function() {
+    var buttonBottomLeft = drawButton(this, 0, config.height - gamePlay*.16, gamePlay*.16, gamePlay*.16, 0xff0000, function() {
         console.log('Button Bottom Left clicked!');
         velx += setVel
         vely -= setVel
         moveDirection = 'upRight';
     });
 
-    var buttonBottomRight = drawButton(this, config.width - gamePlay*.08, config.height - gamePlay*.08, gamePlay*.08, gamePlay*.08, 0xff0000, function() {
+    var buttonBottomRight = drawButton(this, config.width - gamePlay*.16, config.height - gamePlay*.16, gamePlay*.16, gamePlay*.16, 0xff0000, function() {
         console.log('Button Bottom Right clicked!');
         console.log(velx, " ", vely)
         velx -= setVel
