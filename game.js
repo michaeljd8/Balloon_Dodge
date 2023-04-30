@@ -191,7 +191,7 @@ mainScene.update = function() {
         }
     
         if (elaspedTime>12) {
-               game.config.backgroundColor = '#00ff00';
+               game.config.backgroundColor = 0xff0000 ;
                lineDelay = 75;
                lineVelMin = 300;
                lineVelMax = 400;
