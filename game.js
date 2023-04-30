@@ -184,12 +184,14 @@ mainScene.update = function() {
                     lineDelay = 300;
                     if(elaspedTime>=120 && elaspedTime<122) {
                         lines.clear(true,true);
+                        game.config.backgroundColor = '#00ff00';
                     }
                 }
             }
         }
     
-        if (elaspedTime>125) {
+        if (elaspedTime>12) {
+               game.config.backgroundColor = '#00ff00';
                lineDelay = 75;
                lineVelMin = 300;
                lineVelMax = 400;
