@@ -6,7 +6,6 @@ var config = {
     width: gamePlay,
     height: gamePlay,
     parent: 'game-container',
-    backgroundColor: 0xff0000, // set background color to red
     physics: {
         default: 'arcade'
     }
