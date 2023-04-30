@@ -52,6 +52,8 @@ restartButton.addEventListener('click', function() {
     moveDirection = null;
     start_clock = game.getTime();
     lineDelay = 500;
+    lineVelMin = 2;
+    lineVelMax = 200;
 });
 
 
@@ -177,7 +179,6 @@ mainScene.update = function() {
             lineDelay = 450;
             if (elaspedTime> 60) {
                 lineDelay = 400;
-                lineVelMin = 20;
                 if(elaspedTime> 90){
                     lineDelay = 300;
                     lineVelMin = 40;
