@@ -182,9 +182,8 @@ mainScene.update = function() {
                 lineDelay = 400;
                 if(elaspedTime> 90){
                     lineDelay = 300;
-                    if(elaspedTime>=120 && elaspedTime<125) {
-                        lines.clear(true,true)
-                        game.config.backgroundColor = '0xffffff';
+                    if(elaspedTime>=120 && elaspedTime<122) {
+                        lines.clear(true,true);
                     }
                 }
             }
