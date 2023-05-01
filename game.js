@@ -194,9 +194,9 @@ mainScene.update = function() {
         lineCounter++;
         
         if (elaspedTime > 30 && endGame == false) {
-            lineDelay = 450;
+            lineDelay = 400;
             if (elaspedTime> 60) {
-                lineDelay = 400;
+                lineDelay = 350;
                 if(elaspedTime> 90){
                     lineDelay = 300;
                     if(elaspedTime>=120) {
@@ -217,9 +217,9 @@ mainScene.update = function() {
                 this.cameras.main.setBackgroundColor(0xff0000); // set background color to red
                 startBlitz = false;
             }
-            lineDelay = 150;
-            lineVelMin = 200;
-            lineVelMax = 250;
+            lineDelay = 75;
+            lineVelMin = 250;
+            lineVelMax = 300;
 
             if (blitzCounter >= blitzTimer) {
 
