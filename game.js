@@ -5,6 +5,7 @@ var config = {
     type: Phaser.AUTO,
     width: gamePlay,
     height: gamePlay,
+    backgroundColor: 0x000000,
     parent: 'game-container',
     physics: {
         default: 'arcade'
@@ -35,6 +36,11 @@ var scoreDiv;
 var hsDivText;
 var hsDiv;
 var high_score = 0;
+var endGame = false;
+var blitzCounter = 0;
+var blitzTimer = 500;
+var startBlitz = true;
+var nextBlitz = 0;
 
 var mainScene = new Phaser.Scene('main');
 
@@ -48,13 +54,16 @@ restartButton.addEventListener('click', function() {
     game.scene.start('main');
     restartButton.style.display = 'none';
     circle.body.setVelocity(Phaser.Math.RND.integerInRange(-75,75),
-    Phaser.Math.RND.integerInRange(-75,75))
+        Phaser.Math.RND.integerInRange(-75,75))
     moveDirection = null;
     start_clock = game.getTime();
     lineCounter = 498;
     lineDelay = 500;
     lineVelMin = 2;
     lineVelMax = 200;
+    endGame = false;
+    startBlitz = true;
+    nextBlitz = 0;
 });
 
 
@@ -175,28 +184,58 @@ mainScene.update = function() {
         scoreDiv.innerHTML = scoreText.text;
 
         lineCounter++;
-
-        if (elaspedTime > 30) {
+        
+        if (elaspedTime > 30 && endGame == false) {
             lineDelay = 450;
             if (elaspedTime> 60) {
                 lineDelay = 400;
                 if(elaspedTime> 90){
                     lineDelay = 300;
-                    if(elaspedTime>=120 && elaspedTime<122) {
-                        lines.clear(true,true);
-                        game.config.backgroundColor = '#00ff00';
+                    if(elaspedTime>=120) {
+                        endGame = true;
                     }
                 }
             }
         }
-    
-        if (elaspedTime>122) {
-               game.config.backgroundColor = 0xff0000 ;
-               lineDelay = 75;
-               lineVelMin = 300;
-               lineVelMax = 400;
-        }
-        
+
+        if (endGame == true) {
+
+            blitzCounter++;
+
+            console.log(lineDelay)
+
+            if (startBlitz==true) {
+                lines.clear(true,true);
+                this.cameras.main.setBackgroundColor(0xff0000); // set background color to red
+                startBlitz = false;
+            }
+            lineDelay = 150;
+            lineVelMin = 200;
+            lineVelMax = 250;
+
+            if (blitzCounter >= blitzTimer) {
+
+                this.cameras.main.setBackgroundColor(0x000000); // set background color to black
+                lineDelay = 200;
+                lineVelMin = 2;
+                lineVelMax = 200;
+
+                nextBlitz = blitzTimer + Phaser.Math.RND.integerInRange(1500,2500);
+
+                if (blitzCounter >= nextBlitz){
+                    startBlitz = true;
+                    blitzTimer = Phaser.Math.RND.integerInRange(400,1000);
+                    blitzCounter = 0;
+
+                }
+
+
+            }
+
+
+
+
+        } 
 
         // Generate a new line if the lineCounter has reached the lineDelay value
         if (lineCounter >= lineDelay) {
@@ -276,22 +315,22 @@ mainScene.update = function() {
 
 function createLine() {
 
-    h_l_line = this.add.rectangle(10, Phaser.Math.RND.integerInRange(gamePlay*.1, gamePlay*.9), Phaser.Math.RND.integerInRange(gamePlay*.1, gamePlay*.25), gamePlay*.01, 0xffffff);
+    h_l_line = this.add.rectangle(-gamePlay*.25, Phaser.Math.RND.integerInRange(gamePlay*.1, gamePlay*.9), Phaser.Math.RND.integerInRange(gamePlay*.1, gamePlay*.25), gamePlay*.01, 0xffffff);
         this.physics.add.existing(h_l_line);
         lines.add(h_l_line);
         h_l_line.body.velocity.x = Phaser.Math.RND.integerInRange(lineVelMin, lineVelMax);
 
-    h_r_line = this.add.rectangle(window.innerWidth-10, Phaser.Math.RND.integerInRange(gamePlay*.1, gamePlay*.9), Phaser.Math.RND.integerInRange(gamePlay*.1, gamePlay*.25), gamePlay*.01, 0xffffff);
+    h_r_line = this.add.rectangle(window.innerWidth+gamePlay*.25, Phaser.Math.RND.integerInRange(gamePlay*.1, gamePlay*.9), Phaser.Math.RND.integerInRange(gamePlay*.1, gamePlay*.25), gamePlay*.01, 0xffffff);
         this.physics.add.existing(h_r_line);
         lines.add(h_r_line);
         h_r_line.body.velocity.x = Phaser.Math.RND.integerInRange(-lineVelMax,-lineVelMin);
     
-    v_t_line = this.add.rectangle(Phaser.Math.RND.integerInRange(gamePlay*.1, gamePlay*.9), 10, gamePlay*.01, Phaser.Math.RND.integerInRange(gamePlay*.1, gamePlay*.25), 0xffffff);
+    v_t_line = this.add.rectangle(Phaser.Math.RND.integerInRange(gamePlay*.1, gamePlay*.9), -gamePlay*.25, gamePlay*.01, Phaser.Math.RND.integerInRange(gamePlay*.1, gamePlay*.25), 0xffffff);
         this.physics.add.existing(v_t_line);
         lines.add(v_t_line);
         v_t_line.body.velocity.y = Phaser.Math.RND.integerInRange(lineVelMin, lineVelMax);
 
-    v_b_line = this.add.rectangle(Phaser.Math.RND.integerInRange(gamePlay*.1, gamePlay*.9), window.innerWidth-10, gamePlay*.01, Phaser.Math.RND.integerInRange(gamePlay*.1, gamePlay*.25), 0xffffff);
+    v_b_line = this.add.rectangle(Phaser.Math.RND.integerInRange(gamePlay*.1, gamePlay*.9), window.innerWidth+gamePlay*.25, gamePlay*.01, Phaser.Math.RND.integerInRange(gamePlay*.1, gamePlay*.25), 0xffffff);
         this.physics.add.existing(v_b_line);
         lines.add(v_b_line);
         v_b_line.body.velocity.y = Phaser.Math.RND.integerInRange(-lineVelMin, -lineVelMax);
