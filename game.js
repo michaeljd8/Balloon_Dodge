@@ -35,7 +35,7 @@ var scoreText;
 var scoreDiv;
 var hsDivText;
 var hsDiv;
-var high_score = 0;
+var highScore = 0;
 var endGame = false;
 var blitzCounter = 0;
 var blitzTimer = 500;
@@ -43,6 +43,11 @@ var startBlitz = true;
 var nextBlitz = 0;
 
 var mainScene = new Phaser.Scene('main');
+
+if(localStorage.getItem("highScore")) {
+    highScore = localStorage.getItem("highScore");
+  }
+  
 
 startButton.addEventListener('click', function() {
     startButton.style.display = 'none';
@@ -249,10 +254,11 @@ mainScene.update = function() {
             console.log(lineDelay)
             this.scene.pause('main')
             restartButton.style.display = 'block';
-            if (elaspedTime > high_score) {
-                high_score = elaspedTime
+            if (elaspedTime > highScore) {
+                highScore = elaspedTime
+                localStorage.setItem("highScore", highScore);
             }
-            hsDivText.setText('High Score: ' + high_score)
+            hsDivText.setText('High Score: ' + highScore)
             hsDiv.innerHTML = hsDivText.text;
 
         }, null, this);
