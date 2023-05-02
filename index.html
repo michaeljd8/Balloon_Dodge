@@ -5,7 +5,6 @@
     <title>DODGE!</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.55.2/phaser.min.js"></script>
 </head>
 <body>
@@ -17,13 +16,6 @@
     </div>
     <div id="high-score-container">
         <div id="high-score-box"></div>
-        <script>
-            // Retrieve the value from local storage
-            var highScore = localStorage.getItem('highScore');
-    
-            // Update the content of the HTML element with the retrieved value
-            document.getElementById('high-score-box').innerHTML = 'High Score: ' + highScore;
-        </script>
     </div>      
     <div id="game-container">
         <button id="start-button">Start Game</button>
