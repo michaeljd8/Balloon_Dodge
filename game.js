@@ -23,7 +23,7 @@ var setVel = 75;
 var drag = .99;
 var moveDirection = null;
 var lineCounter = 495;
-var lineDelay = 500; // Number of loops to skip before generating a new line
+var lineDelay = 400; // Number of loops to skip before generating a new line
 var lineVelMin = 2;
 var lineVelMax = 200;
 var lineColor = 0xff0000;
@@ -199,11 +199,11 @@ mainScene.update = function() {
         lineCounter++;
         
         if (elaspedTime > 30 && endGame == false) {
-            lineDelay = 400;
+            lineDelay = 350;
             if (elaspedTime> 60) {
-                lineDelay = 350;
+                lineDelay = 300;
                 if(elaspedTime> 90){
-                    lineDelay = 300;
+                    lineDelay = 250;
                     if(elaspedTime>=120) {
                         endGame = true;
                     }
