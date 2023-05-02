@@ -72,6 +72,7 @@ restartButton.addEventListener('click', function() {
     endGame = false;
     startBlitz = true;
     nextBlitz = 0;
+    lineColor = 0xff0000;
 });
 
 
