@@ -96,8 +96,6 @@ mainScene.create = function() {
     hsDivText.setText('High Score: ' + highScore)
     hsDiv.innerHTML = hsDivText.text;
 
-    hsDivText.setText('High Score: ' + highScore)
-    hsDiv.innerHTML = hsDivText.text;
 
     // Create array for line sprites
     lines = this.physics.add.group();

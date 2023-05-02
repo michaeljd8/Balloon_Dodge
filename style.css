@@ -62,7 +62,7 @@ body {
     background-color: #000; 
     color: #ffffff;
     border: 2px solid #ff0000;
-    text-shadow: 2px 2px 0 #ff0000; 
+    text-shadow: 4px 4px 0 #ff0000; 
     font-family: 'Press Start 2P', cursive; /* retro arcade font */
     position: absolute;
     top: 50%;
