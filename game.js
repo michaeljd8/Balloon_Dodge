@@ -26,7 +26,7 @@ var lineCounter = 495;
 var lineDelay = 500; // Number of loops to skip before generating a new line
 var lineVelMin = 2;
 var lineVelMax = 200;
-var lineColor = 0x0000ff;
+var lineColor = 0xff0000;
 var startButton = document.getElementById('start-button');
 var restartButton = document.getElementById('restart-button');
 var start_clock = false;
@@ -216,6 +216,7 @@ mainScene.update = function() {
             if (startBlitz==true) {
                 lines.clear(true,true);
                 this.cameras.main.setBackgroundColor(0xff0000); // set background color to red
+                lineColor = 0x000000;
                 startBlitz = false;
             }
             lineDelay = 75;
@@ -225,6 +226,7 @@ mainScene.update = function() {
             if (blitzCounter >= blitzTimer) {
 
                 this.cameras.main.setBackgroundColor(0x000000); // set background color to black
+                lineColor = 0xff0000;
                 lineDelay = 200;
                 lineVelMin = 2;
                 lineVelMax = 200;
