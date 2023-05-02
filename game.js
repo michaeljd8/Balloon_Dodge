@@ -44,6 +44,8 @@ var nextBlitz = 0;
 
 var mainScene = new Phaser.Scene('main');
 
+
+
 if(localStorage.getItem("highScore")) {
     highScore = localStorage.getItem("highScore");
   }
@@ -88,6 +90,9 @@ mainScene.create = function() {
     hsDiv = document.getElementById('high-score-box')
     hsDivText = this.add.text('High Score: 0')
     hsDivText.setOrigin(0);
+
+    hsDivText.setText('High Score: ' + highScore)
+    hsDiv.innerHTML = hsDivText.text;
 
     // Create array for line sprites
     lines = this.physics.add.group();
