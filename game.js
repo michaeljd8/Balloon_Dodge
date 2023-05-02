@@ -104,7 +104,7 @@ mainScene.create = function() {
     circle = this.add.circle(this.cameras.main.centerX, this.cameras.main.centerY, gamePlay*.05, 0xffffff);
     // Set the circle's properties
     circle.setOrigin(0.5);
-    //circle.setInteractive(); 
+    circle.setInteractive(); 
     this.physics.add.existing(circle)
     circle.body.setCircle(gamePlay*.05);
 
@@ -193,7 +193,7 @@ mainScene.create = function() {
 mainScene.update = function() {
 
 
-        elaspedTime = 110 + Math.floor((game.getTime() - start_clock)/1000)
+        elaspedTime = Math.floor((game.getTime() - start_clock)/1000)
         scoreText.setText('Score: ' + elaspedTime)
         scoreDiv.innerHTML = scoreText.text;
 
