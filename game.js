@@ -50,7 +50,13 @@ var mainScene = new Phaser.Scene('main');
 if(localStorage.getItem("highScore")) {
     highScore = localStorage.getItem("highScore");
   }
-  
+
+
+window.onload = function() {
+    hsDiv = document.getElementById('high-score-box')
+    hsDiv.innerText = "High Score: " + highScore
+}
+
 
 startButton.addEventListener('click', function() {
     startButton.style.display = 'none';
@@ -79,8 +85,11 @@ restartButton.addEventListener('click', function() {
 
 
 
+
 mainScene.preload = function() {
+
     // game assets loading
+
 };
 
 mainScene.create = function() {
@@ -195,6 +204,8 @@ mainScene.update = function() {
         elaspedTime = Math.floor((game.getTime() - start_clock)/1000)
         scoreText.setText('Score: ' + elaspedTime)
         scoreDiv.innerHTML = scoreText.text;
+
+
 
         lineCounter++;
         
