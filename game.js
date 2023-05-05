@@ -22,8 +22,9 @@ var vely = Phaser.Math.RND.integerInRange(-75,75);
 var setVel = 75;
 var drag = .99;
 var moveDirection = null;
-var lineCounter = 495;
-var lineDelay = 400; // Number of loops to skip before generating a new line
+var lineTimer; 
+var lineGen = 1;
+var lastLine = false;
 var lineVelMin = 2;
 var lineVelMax = 200;
 var lineColor = 0xff0000;
@@ -39,6 +40,8 @@ var hsDiv;
 var highScore = 0;
 var endGame = false;
 var blitzCounter = 0;
+var lastBlitz = false;
+var nextBlitz;
 var blitzTimer = 500;
 var startBlitz = true;
 var nextBlitz = 0;
@@ -62,6 +65,7 @@ startButton.addEventListener('click', function() {
     startButton.style.display = 'none';
     game.scene.start('main');
     start_clock = game.getTime();
+    lastLine = game.getTime();
     });
 
 restartButton.addEventListener('click', function() {
@@ -71,8 +75,7 @@ restartButton.addEventListener('click', function() {
         Phaser.Math.RND.integerInRange(-75,75))
     moveDirection = null;
     start_clock = game.getTime();
-    lineCounter = 498;
-    lineDelay = 500;
+    lastLine = game.getTime();
     lineVelMin = 2;
     lineVelMax = 200;
     endGame = false;
@@ -201,21 +204,24 @@ mainScene.create = function() {
 mainScene.update = function() {
 
 
-        elaspedTime = Math.floor((game.getTime() - start_clock)/1000)
+        elaspedTime = 85 + Math.floor((game.getTime() - start_clock)/1000)
         scoreText.setText('Score: ' + elaspedTime)
         scoreDiv.innerHTML = scoreText.text;
 
 
+        lineTimer = (game.getTime() - lastLine)/1000
+        var roundedLineTimer = Phaser.Math.RoundTo(lineTimer,-1)
+        console.log(roundedLineTimer)
 
-        lineCounter++;
+
         
-        if (elaspedTime > 30 && endGame == false) {
-            lineDelay = 350;
-            if (elaspedTime> 60) {
-                lineDelay = 300;
-                if(elaspedTime> 90){
-                    lineDelay = 250;
-                    if(elaspedTime>=120) {
+        if (elaspedTime > 1 && endGame == false) {
+            lineGen = 6;
+            if (elaspedTime> 30) {
+                lineGen = 5;
+                if(elaspedTime> 60){
+                    lineGen = 4;
+                    if(elaspedTime>=90) {
                         endGame = true;
                     }
                 }
@@ -226,7 +232,9 @@ mainScene.update = function() {
 
             blitzCounter++;
 
-            console.log(lineDelay)
+            //blitzTimer = (game.getTime() - lastBlitz)/1000
+
+    
 
             if (startBlitz==true) {
                 lines.clear(true,true);
@@ -234,7 +242,7 @@ mainScene.update = function() {
                 lineColor = 0x000000;
                 startBlitz = false;
             }
-            lineDelay = 75;
+            lineGen = 2;
             lineVelMin = 250;
             lineVelMax = 300;
 
@@ -242,7 +250,7 @@ mainScene.update = function() {
 
                 this.cameras.main.setBackgroundColor(0x000000); // set background color to black
                 lineColor = 0xff0000;
-                lineDelay = 200;
+                lineGen = 4;
                 lineVelMin = 2;
                 lineVelMax = 200;
 
@@ -263,26 +271,26 @@ mainScene.update = function() {
 
         } 
 
-        // Generate a new line if the lineCounter has reached the lineDelay value
-        if (lineCounter >= lineDelay) {
+        // Generate a new line if the lineTimer is larger than lineGen
+        if (lineTimer >= lineGen) {
             createLine.call(this);
-            lineCounter = 0;
+            lastLine = game.getTime();
         }
 
         // Create a collider between the circle and lines
-        this.physics.add.collider(circle, lines, function() {
-            console.log('Circle collided with a line!');
-            console.log(lineDelay)
-            this.scene.pause('main')
-            restartButton.style.display = 'block';
-            if (elaspedTime > highScore) {
-                highScore = elaspedTime
-                localStorage.setItem("highScore", highScore);
-            }
-            hsDivText.setText('High Score: ' + highScore)
-            hsDiv.innerHTML = hsDivText.text;
+        // this.physics.add.collider(circle, lines, function() {
+        //     console.log('Circle collided with a line!');
+        //     console.log(lineGen)
+        //     this.scene.pause('main')
+        //     restartButton.style.display = 'block';
+        //     if (elaspedTime > highScore) {
+        //         highScore = elaspedTime
+        //         localStorage.setItem("highScore", highScore);
+        //     }
+        //     hsDivText.setText('High Score: ' + highScore)
+        //     hsDiv.innerHTML = hsDivText.text;
 
-        }, null, this);
+        // }, null, this);
 
 
 
