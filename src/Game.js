@@ -4,7 +4,7 @@ import { getDifficultyState, clamp, randomInt, rectsOverlap } from './gameLogic'
 /* ── constants ──────────────────────────────────────────── */
 const DRAG = 0.99;
 const SET_VEL = 75;
-const INITIAL_SCORE_OFFSET = 85; // original game started the score at 85
+const INITIAL_SCORE_OFFSET = 85; // the original Phaser game set elapsedTime = 85 + seconds
 
 /* ── component ──────────────────────────────────────────── */
 export default function Game() {
