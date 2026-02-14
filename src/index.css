@@ -1,0 +1,107 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  background: #000;
+  overflow: hidden;
+  font-family: 'Press Start 2P', monospace, cursive;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.game-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+/* ── header ─────────────────────────────────────────── */
+.header {
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #000;
+  border: 4px solid #ff0000;
+  color: #fff;
+  font-size: 2vh;
+  text-shadow: 8px 8px 0 #ff0000;
+}
+
+/* ── score row ──────────────────────────────────────── */
+.score-row {
+  display: flex;
+  width: 100%;
+  height: 15vh;
+  justify-content: center;
+  align-items: center;
+  gap: 4vw;
+  background: #000;
+}
+
+.score-box {
+  font-size: 1.8vh;
+  padding: 8px 14px;
+  border-radius: 4px;
+  background: #000;
+  color: #fff;
+  border: 2px solid #ff0000;
+  text-shadow: 4px 4px 0 #ff0000;
+  white-space: nowrap;
+}
+
+/* ── canvas area ────────────────────────────────────── */
+.canvas-area {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.canvas-area canvas {
+  display: block;
+}
+
+/* ── control buttons (transparent touch targets) ───── */
+.ctrl-btn {
+  position: absolute;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  z-index: 2;
+  -webkit-tap-highlight-color: transparent;
+}
+.ctrl-btn.tl { top: 0; left: 0; }
+.ctrl-btn.tr { top: 0; right: 0; }
+.ctrl-btn.bl { bottom: 0; left: 0; }
+.ctrl-btn.br { bottom: 0; right: 0; }
+
+/* ── start / game-over overlay ──────────────────────── */
+.overlay-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3vh;
+  padding: 10px 20px;
+  border-radius: 4px;
+  background: #000;
+  color: #fff;
+  border: 2px solid #ff0000;
+  text-shadow: 4px 4px 0 #ff0000;
+  font-family: 'Press Start 2P', monospace, cursive;
+  cursor: pointer;
+  z-index: 3;
+  line-height: 1.6;
+  text-align: center;
+}
+
