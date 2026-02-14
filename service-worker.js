@@ -5,7 +5,8 @@ const ASSETS = [
   './style.css',
   './game.js',
   './gameLogic.js',
-  './manifest.json'
+  './manifest.json',
+  './icon.svg'
 ];
 
 self.addEventListener('install', (event) => {
@@ -26,5 +27,16 @@ self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') {
     return;
   }
-  event.respondWith(caches.match(event.request).then((cached) => cached || fetch(event.request)));
+  event.respondWith(
+    caches
+      .match(event.request)
+      .then((cached) => cached || fetch(event.request))
+      .catch((error) => {
+        console.warn('Service worker fetch failed:', event.request.url, error);
+        if (event.request.mode === 'navigate') {
+          return caches.match('./index.html');
+        }
+        return new Response('Service Unavailable: Resource not cached', { status: 503, statusText: 'Offline' });
+      })
+  );
 });
