@@ -31,7 +31,7 @@ var lineColor = 0xff0000;
 var startButton = document.getElementById('start-button');
 var restartButton = document.getElementById('restart-button');
 var start_clock = false;
-var elaspedTime = 0;
+var elapsedTime = 0;
 var score;
 var scoreText;
 var scoreDiv;
@@ -204,8 +204,8 @@ mainScene.create = function() {
 mainScene.update = function() {
 
 
-        elaspedTime = 85 + Math.floor((game.getTime() - start_clock)/1000)
-        scoreText.setText('Score: ' + elaspedTime)
+        elapsedTime = 85 + Math.floor((game.getTime() - start_clock)/1000)
+        scoreText.setText('Score: ' + elapsedTime)
         scoreDiv.innerHTML = scoreText.text;
 
 
@@ -215,18 +215,9 @@ mainScene.update = function() {
 
 
         
-        if (elaspedTime > 1 && endGame == false) {
-            lineGen = 6;
-            if (elaspedTime> 30) {
-                lineGen = 5;
-                if(elaspedTime> 60){
-                    lineGen = 4;
-                    if(elaspedTime>=90) {
-                        endGame = true;
-                    }
-                }
-            }
-        }
+        var difficultyState = GameLogic.getDifficultyState(elapsedTime, endGame, lineGen);
+        lineGen = difficultyState.lineGen;
+        endGame = difficultyState.endGame;
 
         if (endGame == true) {
 
@@ -283,8 +274,8 @@ mainScene.update = function() {
         //     console.log(lineGen)
         //     this.scene.pause('main')
         //     restartButton.style.display = 'block';
-        //     if (elaspedTime > highScore) {
-        //         highScore = elaspedTime
+        //     if (elapsedTime > highScore) {
+        //         highScore = elapsedTime
         //         localStorage.setItem("highScore", highScore);
         //     }
         //     hsDivText.setText('High Score: ' + highScore)
@@ -302,7 +293,6 @@ mainScene.update = function() {
             vely *= drag
   
             circle.body.setVelocity(velx,vely)
-
             if (circle.x < 50) {
                 circle.x = 50;
             }
