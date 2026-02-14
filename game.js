@@ -215,18 +215,9 @@ mainScene.update = function() {
 
 
         
-        if (elaspedTime > 1 && endGame == false) {
-            lineGen = 6;
-            if (elaspedTime> 30) {
-                lineGen = 5;
-                if(elaspedTime> 60){
-                    lineGen = 4;
-                    if(elaspedTime>=90) {
-                        endGame = true;
-                    }
-                }
-            }
-        }
+        var difficultyState = GameLogic.getDifficultyState(elaspedTime, endGame, lineGen);
+        lineGen = difficultyState.lineGen;
+        endGame = difficultyState.endGame;
 
         if (endGame == true) {
 
@@ -302,46 +293,29 @@ mainScene.update = function() {
             vely *= drag
   
             circle.body.setVelocity(velx,vely)
-
-            if (circle.x < 50) {
-                circle.x = 50;
-            }
-            if (circle.y < 50) {
-                circle.y = 50;
-            }
+            circle.x = GameLogic.clamp(circle.x, 50, this.game.config.width-50);
+            circle.y = GameLogic.clamp(circle.y, 50, this.game.config.height-50);
         } else if (moveDirection === 'upRight') {
             velx *= drag
             vely *= drag
   
             circle.body.setVelocity(velx,vely)
-            if (circle.x > this.game.config.width-50) {
-                circle.x = this.game.config.width-50;
-            }
-            if (circle.y < 50) {
-                circle.y = 50;
-            }
+            circle.x = GameLogic.clamp(circle.x, 50, this.game.config.width-50);
+            circle.y = GameLogic.clamp(circle.y, 50, this.game.config.height-50);
         } else if (moveDirection === 'downLeft') {
             velx *= drag
             vely *= drag
   
             circle.body.setVelocity(velx,vely)
-            if (circle.x < 50) {
-                circle.x = 50;
-            }
-            if (circle.y > this.game.config.height-50) {
-                circle.y = this.game.config.height-50;
-            }
+            circle.x = GameLogic.clamp(circle.x, 50, this.game.config.width-50);
+            circle.y = GameLogic.clamp(circle.y, 50, this.game.config.height-50);
         } else if (moveDirection === 'downRight') {
             velx *= drag
             vely *= drag
   
             circle.body.setVelocity(velx,vely)
-            if (circle.x > this.game.config.width-50) {
-                circle.x = this.game.config.width-50;
-            }
-            if (circle.y > this.game.config.height-50) {
-                circle.y = this.game.config.height-50;
-            }
+            circle.x = GameLogic.clamp(circle.x, 50, this.game.config.width-50);
+            circle.y = GameLogic.clamp(circle.y, 50, this.game.config.height-50);
         }
 
 
