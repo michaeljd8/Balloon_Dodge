@@ -21,8 +21,8 @@ export function getDifficultyState(elapsedTime, endGame, currentLineGen) {
     nextLineGen = 6;
     if (elapsedTime > 30) {
       nextLineGen = 5;
-      if (elapsedTime > 60) {
-        nextLineGen = 4;
+      if (elapsedTime > 45) {
+        nextEndGame = true;
         if (elapsedTime >= 90) {
           nextEndGame = true;
         }
